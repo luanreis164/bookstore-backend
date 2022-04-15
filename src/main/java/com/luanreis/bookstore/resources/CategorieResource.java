@@ -43,11 +43,17 @@ public class CategorieResource {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<CategorieDTO> update(@PathVariable Integer id, @RequestBody CategorieDTO objDto){
+    public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody CategorieDTO objDto){
         Categorie obj = service.fromDTO(objDto);
         obj.setId(id);
         obj = service.update(obj);
         return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id){
+       service.delete(id);
+    return ResponseEntity.noContent().build();
     }
 
 }

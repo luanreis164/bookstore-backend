@@ -3,6 +3,7 @@ package com.luanreis.bookstore.services;
 import com.luanreis.bookstore.domain.Categorie;
 import com.luanreis.bookstore.dtos.CategorieDTO;
 import com.luanreis.bookstore.repository.CategorieRepository;
+import com.luanreis.bookstore.services.exceptions.DataIntegrityViolationException;
 import com.luanreis.bookstore.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,15 @@ public class CategorieService {
         return repo.save(newObj);
     }
 
+    public void delete(Integer id){
+        find(id);
+        try{repo.deleteById(id);
+            }
+            catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityViolationException("Categoria não pode ser deletada! Possui livros associados!");
+        }
+    }
+
 
     public Categorie fromDTO(CategorieDTO objDto) {
         return new Categorie(objDto.getId(), objDto.getName(), objDto.getDescription());
@@ -45,5 +55,7 @@ public class CategorieService {
     private void updateData(Categorie newObj, Categorie obj){
         newObj.setName(obj.getName());
     }
+
+
 
 }
