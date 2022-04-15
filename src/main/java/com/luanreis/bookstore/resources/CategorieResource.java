@@ -31,7 +31,7 @@ public class CategorieResource {
     @RequestMapping(value = "/{id}")
     public ResponseEntity<Categorie> find(@PathVariable Integer id){
        Categorie obj = service.find(id);
-        return ResponseEntity.ok().body(obj);
+       return ResponseEntity.ok().body(obj);
     }
 
     @PostMapping
@@ -40,6 +40,14 @@ public class CategorieResource {
         obj = service.create(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<CategorieDTO> update(@PathVariable Integer id, @RequestBody CategorieDTO objDto){
+        Categorie obj = service.fromDTO(objDto);
+        obj.setId(id);
+        obj = service.update(obj);
+        return ResponseEntity.noContent().build();
     }
 
 }

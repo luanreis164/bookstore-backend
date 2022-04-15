@@ -31,10 +31,19 @@ public class CategorieService {
         return repo.save(obj);
     }
 
+    public Categorie update(Categorie obj){
+        Categorie newObj = find(obj.getId());
+        updateData(newObj,obj);
+        return repo.save(newObj);
+    }
+
 
     public Categorie fromDTO(CategorieDTO objDto) {
         return new Categorie(objDto.getId(), objDto.getName(), objDto.getDescription());
     }
 
+    private void updateData(Categorie newObj, Categorie obj){
+        newObj.setName(obj.getName());
+    }
 
 }
