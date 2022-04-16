@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity(name = "LIVRO")
+@Entity
 public class Book implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -26,11 +26,11 @@ public class Book implements Serializable {
     public Book() {
     }
 
-    public Book(Integer id, String title, String authorName, String descrição, Categorie categorie) {
+    public Book(Integer id, String title, String authorName, String description, Categorie categorie) {
         this.id = id;
         this.title = title;
         this.authorName = authorName;
-        this.description = descrição;
+        this.description = description;
         this.categorie = categorie;
     }
 
