@@ -19,27 +19,25 @@ public class Address implements Serializable{
     private String complement;
     private String neighborhood;
     private String postalCode;
+    private String city;
 
     @ManyToOne
     @JoinColumn(name ="customer_id")
     private Customer customer;
 
-    @ManyToOne
-    @JoinColumn(name ="city_id")
-    private City city;
-
     public Address() {
     }
 
-    public void Adress(Integer id, String address, String number, String complement, String neighborhood, String postalCode, Customer customer, City city) {
+    public void Adress(Integer id, String address, String number, String complement, String neighborhood, String postalCode, String city, Customer customer) {
         this.id = id;
         this.address = address;
         this.number = number;
         this.complement = complement;
         this.neighborhood = neighborhood;
         this.postalCode = postalCode;
+        this.city = city;
         this.customer = customer;
-        this.setCity(city);
+
     }
 
     public Integer getId() {
@@ -99,11 +97,11 @@ public class Address implements Serializable{
         this.customer = customer;
     }
 
-    public City getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(City city) {
+    public void setCity(String city) {
         this.city = city;
     }
 

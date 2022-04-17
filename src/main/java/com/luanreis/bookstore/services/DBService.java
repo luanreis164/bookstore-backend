@@ -2,6 +2,7 @@ package com.luanreis.bookstore.services;
 
 import com.luanreis.bookstore.domain.Book;
 import com.luanreis.bookstore.domain.Categorie;
+import com.luanreis.bookstore.domain.Customer;
 import com.luanreis.bookstore.repository.BookRepository;
 import com.luanreis.bookstore.repository.CategorieRepository;
 import org.springframework.beans.factory.annotation.Autowired;

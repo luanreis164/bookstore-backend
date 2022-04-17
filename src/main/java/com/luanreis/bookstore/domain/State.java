@@ -1,11 +1,10 @@
 package com.luanreis.bookstore.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,10 +15,6 @@ public class State implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "state")
-    private List<City> cities = new ArrayList<>();
 
     public State() {
     }
@@ -43,14 +38,6 @@ public class State implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<City> getCities() {
-        return cities;
-    }
-
-    public void setCities(List<City> cities) {
-        this.cities = cities;
     }
 
     @Override
