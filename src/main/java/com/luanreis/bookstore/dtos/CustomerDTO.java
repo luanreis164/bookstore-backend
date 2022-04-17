@@ -1,5 +1,6 @@
 package com.luanreis.bookstore.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.luanreis.bookstore.domain.Customer;
 
 import javax.validation.constraints.NotEmpty;
@@ -14,6 +15,7 @@ public class CustomerDTO {
     @NotEmpty(message = "Preenchimento obrigatório!")
     private String email;
 
+    @JsonIgnore
     private String password;
 
     public CustomerDTO() {
