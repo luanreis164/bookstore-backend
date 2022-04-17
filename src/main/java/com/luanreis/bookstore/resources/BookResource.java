@@ -22,7 +22,7 @@ public class BookResource {
     private BookService service;
 
     @GetMapping
-    public ResponseEntity<List<BookDTO>> findAll(@RequestParam(value = "categorie" , defaultValue = "0")Integer categorie_id){
+    public ResponseEntity<List<BookDTO>> findAll(@RequestParam(value = "categorie" , defaultValue = "0") Integer categorie_id){
         List<Book> list = service.findAll(categorie_id);
         List<BookDTO> listDto = list.stream().map(BookDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDto);

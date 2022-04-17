@@ -23,8 +23,8 @@ public class BookService {
     private CategorieService categorieService;
 
     public List<Book> findAll(Integer categorie_id){
-        categorieService.find(categorie_id);
-        return repo.findByCategorie(categorie_id);
+       categorieService.find(categorie_id);
+        return repo.findByCategorieId(categorie_id);
     }
 
     public Book find(Integer id){
