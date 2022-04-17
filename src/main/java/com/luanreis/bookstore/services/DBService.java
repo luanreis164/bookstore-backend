@@ -1,6 +1,7 @@
 package com.luanreis.bookstore.services;
 
 import com.luanreis.bookstore.domain.*;
+import com.luanreis.bookstore.domain.enums.Profile;
 import com.luanreis.bookstore.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -53,12 +54,19 @@ public class DBService {
 
         Customer c1 = new Customer(null,"Luan Reis","luanreis2202@gmail.com",pe.encode("123"));
         c1.getTelephones().addAll(Arrays.asList("13 996735588","13997564216"));
+        c1.addProfile(Profile.ADMIN);
+
+        Customer c2 = new Customer(null,"Thalita","thalita@gmail.com",pe.encode("123"));
+        c2.getTelephones().addAll(Arrays.asList("13 996332588","13932364216"));
+        c2.addProfile(Profile.CUSTOMER);
 
         Address address1 = new Address(null,"Rua Josefina Bakhita","527","Casa1","Vila Sonia","11722330","Praia Grande",c1);
         c1.getAddresses().add(address1);
+        Address address2 = new Address(null,"Rua Israel Rodrigues Cardoso","134","Casa1","Tude Bastos","11722330","Praia Grande",c2);
+        c2.getAddresses().add(address2);
 
-        customerRepository.saveAll(Arrays.asList(c1));
-        addressRepository.saveAll(Arrays.asList(address1));
+        customerRepository.saveAll(Arrays.asList(c1,c2));
+        addressRepository.saveAll(Arrays.asList(address1,address2));
 
     }
 

@@ -44,6 +44,7 @@ public class Customer {
         this.name = name;
         this.email = email;
         this.password = password;
+        addProfile(Profile.CUSTOMER);
     }
 
     public Integer getId() {
@@ -95,7 +96,7 @@ public class Customer {
     }
 
     public Set<Profile> getProfiles() {
-        return profiles.stream().map(Profile::toEnum).collect(Collectors.toSet());
+        return profiles.stream().map(x -> Profile.toEnum(x)).collect(Collectors.toSet());
     }
 
     public void addProfile(Profile profile) {
