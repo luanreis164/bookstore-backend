@@ -45,6 +45,4 @@ public class ResourceExceptionHandler {
         StandardError err = new StandardError(System.currentTimeMillis(),HttpStatus.FORBIDDEN.value(), "Acesso negado.", e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(err);
     }
-
-
 }
