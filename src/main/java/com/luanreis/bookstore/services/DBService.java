@@ -1,11 +1,9 @@
 package com.luanreis.bookstore.services;
 
-import com.luanreis.bookstore.domain.Book;
-import com.luanreis.bookstore.domain.Categorie;
-import com.luanreis.bookstore.domain.Customer;
-import com.luanreis.bookstore.repository.BookRepository;
-import com.luanreis.bookstore.repository.CategorieRepository;
+import com.luanreis.bookstore.domain.*;
+import com.luanreis.bookstore.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -17,7 +15,19 @@ public class DBService {
     private CategorieRepository categorieRepository;
 
     @Autowired
+    private StateRepository stateRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
+    private AddressRepository addressRepository;
+
+    @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder pe;
 
     public void instatiateDatabase() {
 
@@ -31,6 +41,25 @@ public class DBService {
         cat2.getBooks().addAll(Arrays.asList(book2));
         categorieRepository.saveAll(Arrays.asList(cat1, cat2));
         bookRepository.saveAll(Arrays.asList(book1, book2));
+
+        State acre = new State(null,"Acre");
+        State alagoas = new State(null,"Alagoas");
+        State amapa = new State(null,"Amapá");
+        State amazonas = new State(null,"Amazonas");
+        State bahia = new State(null,"Bahia");
+        State saoPaulo = new State(null,"São Paulo");
+        State rioDeJaneiro = new State(null,"Rio de Janeiro");
+        stateRepository.saveAll(Arrays.asList(acre,alagoas,amapa,amazonas,bahia,saoPaulo,rioDeJaneiro));
+
+        Customer c1 = new Customer(null,"Luan Reis","luanreis2202@gmail.com",pe.encode("123"));
+        c1.getTelephones().addAll(Arrays.asList("13 996735588","13997564216"));
+
+        Address address1 = new Address(null,"Rua Josefina Bakhita","527","Casa1","Vila Sonia","11722330","Praia Grande",c1);
+        c1.getAddresses().add(address1);
+
+        customerRepository.saveAll(Arrays.asList(c1));
+        addressRepository.saveAll(Arrays.asList(address1));
+
     }
 
 }

@@ -3,12 +3,14 @@ package com.luanreis.bookstore.resources;
 
 import com.luanreis.bookstore.domain.Customer;
 import com.luanreis.bookstore.dtos.CustomerDTO;
+import com.luanreis.bookstore.dtos.NewCustomerDTO;
 import com.luanreis.bookstore.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,7 +37,7 @@ public class CustomerResource {
     }
 
     @PostMapping
-    public ResponseEntity<CustomerDTO> create(@RequestBody CustomerDTO objDto){
+    public ResponseEntity<CustomerDTO> create(@Valid @RequestBody NewCustomerDTO objDto){
         Customer obj = service.fromDTO(objDto);
         obj = service.create(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -43,7 +45,7 @@ public class CustomerResource {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody CustomerDTO objDto){
+    public ResponseEntity<Void> update(@PathVariable Integer id,@Valid @RequestBody CustomerDTO objDto){
         Customer obj = service.fromDTO(objDto);
         obj.setId(id);
         obj = service.update(obj);

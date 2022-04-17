@@ -2,13 +2,18 @@ package com.luanreis.bookstore.dtos;
 
 import com.luanreis.bookstore.domain.Book;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 public class BookDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+
+    @NotEmpty(message = "Preenchimento obrigatório!")
     private String title;
+
+    @NotEmpty(message = "Preenchimento obrigatório!")
     private String description;
 
     public BookDTO() {

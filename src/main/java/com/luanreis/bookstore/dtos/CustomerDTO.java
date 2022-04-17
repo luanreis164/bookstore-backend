@@ -1,13 +1,19 @@
 package com.luanreis.bookstore.dtos;
 
-import com.luanreis.bookstore.domain.Categorie;
 import com.luanreis.bookstore.domain.Customer;
+
+import javax.validation.constraints.NotEmpty;
 
 public class CustomerDTO {
 
     private Integer id;
+
+    @NotEmpty(message = "Preenchimento obrigatório!")
     private String name;
+
+    @NotEmpty(message = "Preenchimento obrigatório!")
     private String email;
+
     private String password;
 
     public CustomerDTO() {
