@@ -3,6 +3,7 @@ package com.luanreis.bookstore.dtos;
 import com.luanreis.bookstore.domain.Categorie;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 public class CategorieDTO implements Serializable {
@@ -14,6 +15,7 @@ public class CategorieDTO implements Serializable {
     private String name;
 
     @NotEmpty(message = "Preenchimento obrigatório!")
+    @Size(min = 3,max = 333,message = "Tamanho entre 3 e 333 caracteres!")
     private String description;
 
     public CategorieDTO() {
