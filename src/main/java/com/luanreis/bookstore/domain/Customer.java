@@ -32,7 +32,7 @@ public class Customer {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "PROFILES")
-    private Set<Integer> profiles = new HashSet<>();
+    private final Set<Integer> profiles = new LinkedHashSet<>();
 
 
     public Customer() {

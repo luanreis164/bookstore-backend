@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,7 +35,7 @@ public class CategorieResource {
     }
 
     @PostMapping
-    public ResponseEntity<CategorieDTO> create(@RequestBody CategorieDTO objDto){
+    public ResponseEntity<CategorieDTO> create(@Valid @RequestBody CategorieDTO objDto){
         Categorie obj = service.fromDTO(objDto);
         obj = service.create(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
